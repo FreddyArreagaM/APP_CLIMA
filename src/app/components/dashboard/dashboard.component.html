@@ -1,0 +1,33 @@
+<div *ngIf="error" class="alert alert-dismissible alert-danger">
+    <div class="text-center">
+        <strong>Error al obtener el clima!</strong>
+    </div>
+</div>
+
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-lg-4 mt-4">
+            <img [src]="urlimagen" alt="clima" width="300px" height="300px">
+        </div>
+        <div class="col-lg-6 mt-5">
+            <input type="text" [(ngModel)]="ciudad" (keyup.enter)="obtenerClima()"
+                class="form-control form-control-lg size" placeholder="Ingrese el nombre de una ciudad">
+            <button (click)="obtenerClima()" class="btn btn-primary btn-lg btn-block mt-4 size"
+                [disabled]="ciudad == ''">Obtener Clima</button>
+
+            <div *ngIf="loading" class="text-center mt-3">
+                <div class="spinner-grow text-primary" role="status"></div>
+                <div class="spinner-grow text-primary" role="status"></div>
+                <div class="spinner-grow text-primary" role="status"></div>
+            </div>
+            <div *ngIf="query" class="card mt-3">
+                <div class="card-body">
+                    <h3 class="text-center mb-3"> Cuidad de {{nombre_ciudad}}</h3>
+                    <p> <b> Temperatura: {{temperatura | number: '1.2-2'}} °C</b></p>
+                    <p> <b> Humedad: {{humedad}}</b></p>
+                    <p> <b> Clima: {{clima}}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
